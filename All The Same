@@ -1,0 +1,13 @@
+def all_the_same(elements: List[Any]) -> bool:
+    w = []
+    for x in set(elements):
+        a, b = x, elements.count(x)
+        w.append((a, b))
+    if len(w) > 1:
+        return False
+    return True
+    
+
+def all_the_same(elements):
+   return elements[1:] == elements[:-1]
+
