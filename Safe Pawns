@@ -1,0 +1,14 @@
+def safe_pawns(pawns: set):
+    pawns_indexes = set()
+    count = 0
+    for p in pawns:
+        row = int(p[1])
+        col = ord(p[0])
+        pawns_indexes.add((row,col))
+    for row, col in pawns_indexes:
+        is_safe = ((row - 1, col - 1) in pawns_indexes) or ((row - 1, col + 1) in pawns_indexes)
+
+        if is_safe:
+            count += 1
+            print(count)
+    return count
