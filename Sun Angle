@@ -1,0 +1,19 @@
+def sun_angle(time: str):
+    import datetime
+    t = time.split(":")
+    h = int(t[0])
+    m = int(t[1])
+    timenow = datetime.datetime(100,1,1,h,m)
+    timedifference = timenow - datetime.datetime(100,1,1,6,0)
+    if timedifference.total_seconds() /3600 > 12:
+        return "I don't see the sun!"
+    if timedifference.total_seconds() /3600 < 0:
+        return "I don't see the sun!"
+    d = timedifference.total_seconds() / 60
+    return round(d * 0.25, 2)
+    
+   #oneliner solution:
+   def sun_angle(time):
+    h, m = list(map(int, time.split(':')))
+    angle = 15 * h + m / 4 - 90
+    return angle if 0 <= angle <= 180 else "I don't see the sun!"
