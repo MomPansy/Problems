@@ -1,0 +1,4 @@
+def first_word(text: str) -> str:
+    for char in text:
+        new_text = text.replace(".", " ").replace(",", " ")
+    return new_text.split()[0]
