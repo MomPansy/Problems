@@ -1,0 +1,14 @@
+def nearest_value(values: set, one: int) -> int:
+    list_values = list(values)
+    if one > max(list_values):
+        return max(list_values)
+    list_values.append(one)
+    list_values.sort()
+    position = list_values.index(one)
+    right = abs(list_values[position] - list_values[position+1])
+    left = abs(list_values[position] - list_values[position-1])
+
+    if right < left:
+        return list_values[position+1]
+    else:
+        return list_values[position-1]
