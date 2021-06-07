@@ -1,0 +1,7 @@
+def popular_words(text: str, words: list) -> dict:
+    list_text = list(text.lower().split())
+##    print(list_text)
+    x = {}
+    for word in words:
+        x.update({word:list_text.count(word)})
+    return x
