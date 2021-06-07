@@ -1,0 +1,11 @@
+def remove_all_before(items: list, border: int):
+    if len(items) == 0:
+        return items
+    for i in items:     
+        if i == border:
+            return items[items.index(border):] 
+    return items
+
+remove_all_before([1,2,3,4,5], 3)
+
+print(remove_all_before([1,2,3,4,5], 3))
