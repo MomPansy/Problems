@@ -1,0 +1,5 @@
+def second_index(text: str, symbol: str) -> [int, None]:
+    i = text.find(symbol)
+    if text.count(symbol) < 2:
+        return None
+    return text[i+1:].find(symbol) + i + 1
