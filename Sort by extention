@@ -1,0 +1,30 @@
+from typing import List
+#create a function to determine if the string is has an extention or not
+def is_name(n):
+    if len(n) == 2:
+        if n[0] == '' or n[-1] =='':
+            return True
+    elif len(n) > 2:
+        if n[-1] == '':
+            return True 
+    return False
+
+#function that returns n[1] to n[-1]
+def func(n):
+    w = []
+    for i in range(1, len(n)):
+       w.append(n[i])
+    return w
+    
+
+def sort_by_ext(files: List[str]) -> List[str]:
+    y = [x.split(".") for x in files]
+    print(y)
+    #sort by (in order of priority): whether it has an extention, number of ".",
+##  #extention, whatever is inbetween extention and first string,
+    #first string
+    new_list = sorted(y, key = lambda x: (-is_name(x), len(x), x[-1], func(x), x[0]), reverse = False)
+    w = []
+    for i in new_list:
+         w.append(".".join(i))
+    return w
