@@ -1,0 +1,5 @@
+def checkio(data: list) -> list:
+    for x in data:
+        if data.count(x) == 1:
+            data.remove(x)
+    return data
