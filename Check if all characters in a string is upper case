@@ -1,0 +1,8 @@
+def is_all_upper(text: str):
+    for char in text:
+        if char.islower() == True:
+            return False
+    return True
+    
+            
+print(is_all_upper('Hi'))
