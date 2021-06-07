@@ -1,0 +1,5 @@
+def days_diff(a, b):
+    from datetime import date, timedelta
+    date_a = date(a[0], a[1], a[2])
+    date_b = date(b[0], b[1], b[2])
+    return abs(date_a - date_b).days
