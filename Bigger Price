@@ -1,0 +1,2 @@
+def bigger_price(limit: int, data: list) -> list:
+    print(sorted(data, key = "Price", reverse = True))
