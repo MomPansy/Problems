@@ -1,0 +1,7 @@
+def replace_first(items: list):
+    if len(items) == 0:
+        return items
+    element = items[0]
+    items.remove(element)
+    items.append(element)
+    return items
