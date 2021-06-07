@@ -1,0 +1,4 @@
+def backward_string_by_word(text: str) -> str:
+    # your code here
+
+    return ' '.join(text[::-1].split(' ')[::-1])
