@@ -1,0 +1,17 @@
+def split_list(items: list) -> list:
+    w = []
+    if len(items) % 2 == 0:
+        w.append(items[:len(items)//2])
+        w.append(items[len(items)//2:])
+        return w
+    w.append(items[:(len(items)//2)+1])
+    w.append(items[(len(items)//2)+1:])
+    return w
+  
+  #one liner solution:
+def split_list(items: list) -> list:
+  return [items[:(split_index := (len(items) + 1) // 2)], items[split_index:]]
+  
+def split_list(items: list) -> list:
+    mid = (len(items) + 1) // 2
+    return [items[:mid], items[mid:]]
