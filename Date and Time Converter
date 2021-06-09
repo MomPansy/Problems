@@ -1,0 +1,43 @@
+def date_time(time: str) -> str:
+    import datetime
+    
+    time = time.replace(" ", ".").replace(":", ".").split(".")
+    time = [int(item) for item in time]
+    y = datetime.datetime(year = time[2], month = time[1], day = time[0]
+                      , hour = time[3], minute = time[4])
+    new_time_hours_minutes = [time[0], y.strftime("%B"), time[2], "year", time[3],
+                "hours" , time[4], "minutes"]
+    new_time_hour_minutes = [time[0], y.strftime("%B"), time[2], "year", time[3],
+                "hour" , time[4], "minutes"]
+    new_time_hour_minute = [time[0], y.strftime("%B"), time[2], "year", time[3],
+                "hour" , time[4], "minute"]
+    new_time_hours_minute = [time[0], y.strftime("%B"), time[2], "year", time[3],
+                "hours" , time[4], "minute"]
+    
+    if time[3] != 1 and time[4] != 1:
+        return " ".join(str(item) for item in new_time_hours_minutes)
+    if time[3] == 1 and time[4] != 1:
+        return " ".join(str(item) for item in new_time_hour_minutes)
+    if time[3] == 1 and time[4] == 1:
+        return " ".join(str(item) for item in new_time_hour_minute)
+    if time[3] != 1 and time[4] == 1:
+        return " ".join(str(item) for item in new_time_hours_minute)
+        
+from datetime import datetime
+
+def checkio(time):
+    dt = datetime.strptime(time, '%d.%m.%Y %H:%M')
+    hour = 'hour' if dt.hour == 1 else 'hours'    
+    minute = 'minute' if dt.minute == 1 else 'minutes'
+    return dt.strftime(f'%-d %B %Y year %-H {hour} %-M {minute}')        
+
+def date_time(time):
+    
+    t = datetime.strptime(time, '%d.%m.%Y %H:%M')
+    y, m, d, h, mi =  t.year, datetime.strftime(t, '%B'), t.day, t.hour, t.minute
+    suffix = lambda n: 's' if n != 1 else ''
+
+    return f'{d} {m} {y} year {h} hour{suffix(h)} {mi} minute{suffix(mi)}'        
+
+print(date_time('01.01.2000 00:00'))
+
