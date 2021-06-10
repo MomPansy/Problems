@@ -1,0 +1,16 @@
+def words_order(text: str, words: list) -> bool:
+    for word in words:
+        if words.count(word) > 1:
+            return False
+    w = text.split(" ")
+    w = list(filter(lambda x: x in words, w))
+    return w == words
+
+def words_order(text, words):
+    text_words = {w for w in text.split() if w in words}
+    return list(sorted(text_words, key=text.index)) == words
+    
+def words_order(text: str, words: list) -> bool:
+    return words == [word for word in text.split() if word in words and words.count(word) < 2]
+
+print(words_order('hi world im here', ['here', 'world']))
