@@ -1,0 +1,7 @@
+def checkio(number: int) -> int:
+    result = 1
+    for num in str(number):
+        result *= int(num) if int(num) > 1 else 1
+    return result
+    
+print(checkio(123405))
