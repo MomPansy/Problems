@@ -1,0 +1,21 @@
+def isometric_strings(a, b):
+    dict_a = {}
+    dict_b = {}
+    a_encoded= []
+    b_encoded = []
+    if len(set(a)) == len(set(b)):
+        for char in set(a):
+            dict_a.update({char: a.index(char)})
+        for char in set(b):
+            dict_b.update({char: b.index(char)})
+        for i in a:
+            a_encoded.append(dict_a.get(i))
+        for h in b:
+            b_encoded.append(dict_b.get(h))
+        return a_encoded == b_encoded
+    return False
+    
+def isometric_strings(str1: str, str2: str) -> bool:
+    return len(set(zip(str1, str2))) == len(set(str1))
+
+print(isometric_strings('add', 'egg'))
