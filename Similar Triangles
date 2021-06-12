@@ -1,0 +1,42 @@
+def similar_triangles(coords_1, coords_2) -> bool:
+    import math
+    A1 = coords_1[0]
+    B1 = coords_1[1]
+    C1 = coords_1[2]
+    length_A1 = math.sqrt((abs(A1[1] - B1[1]))**2 + (abs(A1[0] - B1[0]))**2 )
+    length_B1 = math.sqrt((abs(B1[1] - C1[1]))**2 + (abs(B1[0] - C1[0]))**2 )
+    length_C1 = math.sqrt((abs(A1[1] - C1[1]))**2 + (abs(A1[0] - C1[0]))**2 )
+    A2 = coords_2[0]
+    B2 = coords_2[1]
+    C2 = coords_2[2]
+    length_A2 = math.sqrt((abs(A2[1] - B2[1]))**2 + (abs(A2[0] - B2[0]))**2 )
+    length_B2 = math.sqrt((abs(B2[1] - C2[1]))**2 + (abs(B2[0] - C2[0]))**2 )
+    length_C2 = math.sqrt((abs(A2[1] - C2[1]))**2 + (abs(A2[0] - C2[0]))**2 )
+    sides_1 = sorted([length_A1, length_B1, length_C1])
+    sides_2 = sorted([length_A2, length_B2, length_C2])
+    print(sides_1, sides_2)
+    print([length_A1 / length_A2, length_B1 / length_B2, length_C1/length_C2])
+    if sides_1[0] > sides_2[0]:
+        return sides_1[0] / sides_2[0] == sides_1[1] / sides_2[1] == sides_1[2]/sides_2[2]
+    return sides_2[0]/sides_1[0] == sides_2[1]/sides_1[1] == sides_2[2]/sides_1[2]
+###################    
+def similar_triangles(coords_1,coords_2)->bool:
+    distance=lambda a,b:((b[0]-a[0])**2+(b[1]-a[1])**2)**.5
+    edges=[sorted([distance(c[x],c[x-1])for x in range(len(c))])
+                                        for c in(coords_1,coords_2)]
+    return len({round(a/b,2)for a,b in zip(*edges)})==1
+###################      
+def get_distance(coords):
+    return sqrt(sum((coords[0][i]-coords[1][i])**2 for i in range(2)))
+
+
+def get_sides_ratio(vertices):
+    sides = sorted(map(get_distance, combinations(vertices, 2)))
+    return (sides[1]/sides[0], sides[2]/sides[0])
+
+
+def similar_triangles(coords_1: Coords, coords_2: Coords) -> bool:
+    return get_sides_ratio(coords_1) == get_sides_ratio(coords_2)    
+    
+print(similar_triangles([(0, 0), (0, 3), (2, 0)], [(3, 0), (5, 3), (5, 0)]))
+    
