@@ -1,0 +1,5 @@
+def sum_light(els) -> int:
+    difference = lambda a: els[a+1] - els[a]
+    return sum(difference(b).total_seconds() for b in range(0, len(els) - 1) if b % 2 == 0 )
+    #return sum(difference(b).total_seconds() for b in range(0, len(els), 2 )
+   
