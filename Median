@@ -1,0 +1,32 @@
+def checkio(data) -> [int, float]:
+    data = sorted(data)
+    if len(data) % 2 != 0:
+        return data[len(data)//2]
+    return (data[len(data) // 2] + data[len(data) // 2 - 1]) / 2
+    
+    
+def checkio(data):
+    data.sort()
+    half = len(data) // 2
+    return (data[half] + data[~half]) / 2
+    
+    
+    
+def checkio(data):
+    """Return the median of a list of numbers."""
+    # A linear median finding algorithm such as "median of medians" may be faster
+    # theoretically, but using the builtin sort is faster in practice for the
+    # sizes of data set encountered in the tests.
+    #
+    # The 'heapq' module also offers nlargest and nsmallest methods, which can
+    # be used to find a median, but even for lists of 100 elements, sort is ~3x
+    # faster according to the timeit module.
+    data.sort()
+    l = len(data)
+    mid = l // 2
+    if l % 2 == 1:
+        # If the length of the list is odd, return the middle item.
+        return data[mid]
+    else:
+        # If the length is even, average the two items bracketing the middle.
+        return sum(data[mid-1:mid+1]) / 2
