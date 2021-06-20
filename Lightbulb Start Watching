@@ -1,0 +1,33 @@
+from datetime import datetime
+from typing import List, Optional
+
+def sum_light(els: List[datetime], start_watching = 0) -> int:
+    difference = lambda a: els[a+1] - els[a]
+    y = sum(difference(b).total_seconds() for b in range(0, len(els), 2))
+    if start_watching == 0:
+        return y
+    if len(els) == 2:
+        if els[0] <= start_watching < els[1]:
+            return (els[1] - start_watching).total_seconds()
+        elif start_watching >= els[1]:
+            return 0
+    for i in range(0, len(els), 2):
+        if els[i] < start_watching < els[i+1]:
+            return sum(difference(b).total_seconds() for b in range(i+2, len(els), 2)) + (els[i+1] - start_watching).total_seconds()
+        elif start_watching == els[i]:
+            return y - sum(difference(b).total_seconds() for b in range(0, i-1, 2))
+        elif els[-1] <=start_watching:
+            return 0
+        elif els[i+1] <= start_watching < els[i+2]:
+            return y - sum(difference(b).total_seconds() for b in range(0, i+1, 2))
+            
+            
+            
+ def sum_light(els: List[datetime], start_watching: Optional[datetime] = None) -> int:
+    """how long the light bulb has been turned on"""
+    return sum(
+        (
+            max(start_watching or end, end) - max(start_watching or start, start)
+        ).total_seconds()
+        for start, end in zip(els[::2], els[1::2])
+    )
