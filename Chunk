@@ -1,0 +1,18 @@
+def chunking_by(items: list, size: int):
+    Tsize = True
+    lis1 = []
+    if len(items) > 0:
+        while Tsize == True:
+            lis1.append(items[:size])
+            items = items[size:]
+            if 0 < len(items) < size:
+                Tsize = False
+                lis1.append(items)
+            if len(items) == 0:
+                Tsize = False            
+    return lis1
+    
+    
+def chunking_by(items: list, size: int) -> Iterable:
+    # your code here
+    return [items[i:i+size] for i in range(0,len(items),size)]
