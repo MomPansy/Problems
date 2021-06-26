@@ -1,0 +1,22 @@
+def except_zero(items: list):
+    indices = [i for i, x in enumerate(items) if x == 0]
+
+    try:
+        while True:
+            items.remove(0)
+    except ValueError:
+        pass
+    
+    items = sorted(items)
+    for num in indices:
+        items.insert(num, 0)
+    return items
+    
+    
+    
+    
+def except_zero(items: list) -> Iterable:
+    
+    l = sorted([x for x in items if x!=0], reverse=True)
+    
+    return([items[n] if items[n]==0 else l.pop() for n in range(len(items))])
