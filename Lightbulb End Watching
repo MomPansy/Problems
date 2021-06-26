@@ -1,0 +1,33 @@
+def sum_light(els, start_watching = None, end_watching = None):
+    """how long the light bulb has been turned on"""
+    w = []
+    s = []
+    if start_watching != None:
+        if len(els) % 2 != 0:
+            w.append((max(start_watching, end_watching) - max(start_watching, els[-1])).total_seconds())
+            s.append((max(end_watching, end_watching) - max(end_watching, els[-1])).total_seconds())
+        for start, end in zip(els[::2], els[1::2]):
+            print(start, end)
+            w.append((max(start_watching or end, end) - max(start_watching or start, start)).total_seconds())
+            if end_watching != None:
+                s.append((max(end_watching or end, end) - max(end_watching or start, start)).total_seconds())
+        return abs(sum(w) - sum(s))
+    difference = lambda a: els[a+1] - els[a]
+    return sum(difference(b).total_seconds() for b in range(0, len(els), 2 ))
+    
+    
+    
+def sum_light(
+    els: List[datetime],
+    start_watching: Optional[datetime] = None,
+    end_watching: Optional[datetime] = None,
+) -> int:
+    """how long the light bulb has been turned on"""
+    els.append(end_watching)
+    return sum(
+        (
+            min(end_watching or end, max(start_watching or end, end))
+            - min(end_watching or end, max(start_watching or start, start))
+        ).total_seconds()
+        for start, end in zip(els[::2], els[1::2])
+    )
