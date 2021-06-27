@@ -1,0 +1,11 @@
+def frequency_sorting(numbers):
+    numbers = sorted(numbers)
+    return sorted(numbers, key = lambda x: numbers.count(x), reverse = True)
+    
+def checkio(numbers):
+    return sorted(sorted(numbers), key=numbers.count, reverse=True)
+    
+    
+def checkio(numbers):
+    return sorted(numbers, key=lambda x: (-numbers.count(x), x))
+    
