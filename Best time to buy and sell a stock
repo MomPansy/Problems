@@ -1,0 +1,12 @@
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if len(prices) < 2:
+            return 0
+        hProfit = 0
+        mBuy = prices[0]
+        for price in prices:
+            hProfit = max(hProfit, price - mBuy)
+            mBuy = min(mBuy, price)
+        return hProfit
+
+
